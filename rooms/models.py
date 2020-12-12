@@ -1,7 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
 from core import models as core_models
-from users import models as user_models
 
 # 같은 이름을 사용하면 안됨
 
@@ -47,6 +46,18 @@ class HouseRule(AbstractItem):
         verbose_name = "House Rule"
 
 
+class Photo(core_models.TimeStampedModel):
+
+    """ Photo Model Definition """
+
+    caption = models.CharField(max_length=80)
+    file = models.ImageField()
+    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.caption
+
+
 class Room(core_models.TimeStampedModel):
     """ Room Model Definition """
 
@@ -63,12 +74,12 @@ class Room(core_models.TimeStampedModel):
     check_in = models.TimeField()
     check_out = models.TimeField()
     instant_book = models.BooleanField(default=False)
-    host = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
+    host = models.ForeignKey("users.User", on_delete=models.CASCADE)
     room_type = models.ForeignKey(
-        RoomType, on_delete=models.SET_NULL, null=True)
-    amenity = models.ManyToManyField(Amenity, blank=True)
-    facility = models.ManyToManyField(Facility, blank=True)
-    house_rule = models.ManyToManyField(HouseRule, blank=True)
+        "RoomType", on_delete=models.SET_NULL, null=True)
+    amenity = models.ManyToManyField("Amenity", blank=True)
+    facility = models.ManyToManyField("Facility", blank=True)
+    house_rule = models.ManyToManyField("HouseRule", blank=True)
 
     def __str__(self):
         return self.name
