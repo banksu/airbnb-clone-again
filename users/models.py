@@ -15,7 +15,7 @@ class User(AbstractUser):
     GENDER_CHOICES = (
         (GENDER_MALE, "Male"),
         (GENDER_FEMALE, "Female"),
-        (GENDER_OTHER, "Other")
+        (GENDER_OTHER, "Other"),
     )
     LANGUAGE_ENGLISH = "en"
     LANGUAGE_KOREAN = "kr"
@@ -33,16 +33,13 @@ class User(AbstractUser):
         (CURENCY_KRW, "KRW"),
     )
 
-    avatar = models.ImageField(blank=True)
-    gender = models.CharField(choices=GENDER_CHOICES,
-                              max_length=10,  blank=True)
+    avatar = models.ImageField(upload_to="avatars", blank=True)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
     bio = models.TextField(default="", blank=True)
     birthdate = models.DateField(blank=True, null=True)
-    language = models.CharField(
-        choices=LANGUAGE_CHOICES, max_length=2,  blank=True)
-    currency = models.CharField(
-        choices=CURENCY_CHOICES, max_length=3,  blank=True)
+    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2, blank=True)
+    currency = models.CharField(choices=CURENCY_CHOICES, max_length=3, blank=True)
     superhost = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.username+' night'
+        return self.username + " night"
