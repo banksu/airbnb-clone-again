@@ -2,7 +2,9 @@
 
 
 
-{% block page_name %}Home{% endblock page_name %}
+{% block page_title %}
+    {{room.name}}
+{% endblock page_title %}
 
 
 {% block content %}
@@ -13,7 +15,7 @@
 <div>
     <h2>{{room.host}}
     {% if room.host.superhost %}
-        😎
+        😎I am superhost
     {% endif %}
     </h2>
     <h3>Amenities</h3>
