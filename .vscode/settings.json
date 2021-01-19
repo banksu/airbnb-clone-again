@@ -6,5 +6,12 @@
         "--max-line-length=91"
     ],
     "python.pythonPath": "C:\\Users\\super\\.virtualenvs\\airbnb-clone-again-JicGvEpt\\Scripts\\python.exe",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "files.associations": {
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    
 }
